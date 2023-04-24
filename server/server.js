@@ -24,6 +24,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/product", productRoutes);
 
+
+
 // // console.log(readdirSync("./routes"))
 // readdirSync("./routes").map((file)=>app.use("/api/category", require("./routes/"+file)));
 // readdirSync("./routes").map((file)=>app.use("/api/auth", require("./routes/"+file)));
@@ -33,10 +35,10 @@ app.use("/api/product", productRoutes);
 
 app.listen(port, console.log("running server on port " + port));
 
-app.get('/', (req, res) => {
+app.use('/', (req, res) => {
     res.send('Hey this is my API running 🥳')
   })
   
-  app.get('/about', (req, res) => {
+  app.use('/about', (req, res) => {
     res.send('This is my about route..... ')
   })
