@@ -1,8 +1,8 @@
 const express = require('express');
 const ConnectDB = require('./config/db');
-// const {readdirSync} = require('fs');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 const dotenv = require('dotenv').config();
 const morgan = require('morgan');
 const port = process.env.PORT;
@@ -18,18 +18,18 @@ ConnectDB();
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../client/build')))
 
 //routes
 app.use("/api/auth", authRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/product", productRoutes);
 
+//rest api
+app.use('*', function(req,res){
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
-
-// // console.log(readdirSync("./routes"))
-// readdirSync("./routes").map((file)=>app.use("/api/category", require("./routes/"+file)));
-// readdirSync("./routes").map((file)=>app.use("/api/auth", require("./routes/"+file)));
-// readdirSync("./routes").map((file)=>app.use("/api/product", require("./routes/"+file)));
 
 
 
@@ -39,8 +39,6 @@ app.use('/', (req, res) => {
     res.send('Hey this is my API running 🥳')
   })
   
-  app.use('/about', (req, res) => {
-    res.send('This is my about route..... ')
-  })
 
-  module.exports = app;
+
+
