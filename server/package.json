@@ -4,9 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "build": "echo \"No build specified\" && exit 1",
+    "test": "echo \"No test specified\" && exit 1",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm start --prefer ./client",
+    "client": "npm start --prefer ../client",
     "dev": "concurrently \"npm run start\" \"npm run client\""
   },
   "keywords": [],
