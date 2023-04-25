@@ -3,7 +3,7 @@ const ConnectDB = require('./config/db');
 const app = express();
 const cors = require('cors');
 const path = require('path');
-// const fileURLToPath = require('url');
+const fileURLToPath = require('url');
 const dotenv = require('dotenv').config();
 const morgan = require('morgan');
 const port = process.env.PORT;
@@ -14,8 +14,8 @@ const productRoutes = require("./routes/productRoutes");
 
 ConnectDB();
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //middelwares
 app.use(cors());
